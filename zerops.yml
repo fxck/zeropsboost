@@ -3,7 +3,7 @@ app:
     base: [nodejs@14]
     build:
       - npm i
-      - npm run build app
+      - npm run build app --skip-nx-cache
     deploy: ['dist/apps/app/~']
 
 api:
@@ -11,7 +11,7 @@ api:
     base: [nodejs@14]
     build:
       - npm i
-      - npm run build api
+      - npm run build api --skip-nx-cache
     deploy: ['dist/apps/api/~', 'node_modules', 'package.json']
   run:
     start: node main.js
