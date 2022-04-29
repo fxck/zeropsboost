@@ -12,6 +12,6 @@ api:
     build:
       - npm i
       - npm run build api
-    deploy: ['dist/apps/api/~']
+    deploy: ['dist/apps/api/~', 'node_modules', 'package.json']
   run:
     start: node main.js
