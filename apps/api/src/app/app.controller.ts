@@ -1,15 +1,20 @@
-import { Controller, Get } from '@nestjs/common';
-
-import { Message } from '@zeropsboost/api-interfaces';
-
-import { AppService } from './app.service';
+import { Controller, Delete, Get, Post } from '@nestjs/common';
 
 @Controller()
 export class AppController {
-  constructor(private readonly appService: AppService) {}
 
-  @Get('hello')
-  getData(): Message {
-    return this.appService.getData();
+  @Get('todo')
+  getTodo() {
+    return 'ahoj';
+  }
+
+  @Post('hello')
+  addNewTodo() {
+    return 'ahoj';
+  }
+
+  @Delete('hello')
+  deleteTodo() {
+    return 'ahoj';
   }
 }

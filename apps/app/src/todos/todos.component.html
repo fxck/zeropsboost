@@ -1,0 +1,13 @@
+<zeropsboost-todo-item
+  *ngFor="let item of todos; let index = index;"
+  [index]="index"
+  [item]="item"
+  (remove)="removeTodo($event)"
+  (update)="updateTodo($event.index, $event.item)">
+</zeropsboost-todo-item>
+
+<br/>
+
+<input type="text" #inputRef class="add-input">
+
+<button (click)="addTodo(inputRef.value); inputRef.value = ''" class="button">Přidat</button>

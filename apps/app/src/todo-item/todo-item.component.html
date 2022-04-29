@@ -1,0 +1,13 @@
+<div class="item">
+
+  {{ index }} - {{ item }}
+
+  <input type="text" [value]="item" #inputEditRef>
+
+  <button (click)="update.emit({ index, item: inputEditRef.value })" class="button">[update]</button>
+
+  <button (click)="remove.emit(index)" class="button">[delete]</button>
+
+</div>
+
+
