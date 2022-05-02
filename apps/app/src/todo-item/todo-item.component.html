@@ -1,13 +1,20 @@
 <div class="item">
+  {{ index }} - {{ text }} - {{ completed }}
 
-  {{ index }} - {{ item }}
+  <input type="text" [value]="text" #inputEditRef />
 
-  <input type="text" [value]="item" #inputEditRef>
-
-  <button (click)="update.emit({ index, item: inputEditRef.value })" class="button">[update]</button>
+  <button
+    (click)="update.emit({ 
+      index, 
+      item: {
+        text: inputEditRef.value, 
+        completed
+      }
+     })"
+    class="button"
+  >
+    [update]
+  </button>
 
   <button (click)="remove.emit(index)" class="button">[delete]</button>
-
 </div>
-
-
