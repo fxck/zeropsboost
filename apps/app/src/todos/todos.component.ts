@@ -13,18 +13,17 @@ export interface Todo {
 export class TodosComponent {
   todos = [
     {
-      text: 'string',
+      text: 'Naučit se Angular',
       completed: true,
     },
     {
-      text: 'completed',
+      text: 'Naučit se git',
       completed: false,
     },
   ];
 
   addTodo(value: Todo) {
     this.todos.push(value);
-    console.log(value);
   }
 
   removeTodo(index: number) {
