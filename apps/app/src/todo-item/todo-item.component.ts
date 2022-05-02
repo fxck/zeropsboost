@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Todo } from '../todos/todos.component';
 
 @Component({
   selector: 'zeropsboost-todo-item',
@@ -6,17 +7,18 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   styleUrls: ['./todo-item.component.scss'],
 })
 export class TodoItemComponent {
-
   @Input()
   index!: number;
 
   @Input()
-  item!: string;
+  text: string;
+
+  @Input()
+  completed: boolean;
 
   @Output()
   remove = new EventEmitter<number>();
 
   @Output()
-  update = new EventEmitter<{ index: number; item: string; }>();
-
+  update = new EventEmitter<{ index: number; item: Todo }>();
 }

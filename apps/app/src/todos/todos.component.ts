@@ -1,25 +1,37 @@
 import { Component } from '@angular/core';
 
+export interface Todo {
+  text: string;
+  completed: boolean;
+}
+
 @Component({
   selector: 'zeropsboost-todos',
   templateUrl: './todos.component.html',
   styleUrls: ['./todos.component.scss'],
 })
 export class TodosComponent {
+  todos = [
+    {
+      text: 'string',
+      completed: true,
+    },
+    {
+      text: 'completed',
+      completed: false,
+    },
+  ];
 
-  todos = ['nauč se angular','oprav zerops'];
-
-  addTodo(value: string) {
+  addTodo(value: Todo) {
     this.todos.push(value);
+    console.log(value);
   }
 
   removeTodo(index: number) {
     this.todos.splice(index, 1);
   }
 
-  updateTodo(index: number, newValue: string) {
-    console.log(index, newValue);
+  updateTodo(index: number, newValue: Todo) {
     this.todos[index] = newValue;
   }
-
 }
