@@ -33,4 +33,8 @@ export class TodosComponent {
   updateTodo(index: number, newValue: Todo) {
     this.todos[index] = newValue;
   }
+
+  trackByIndex(index: number) {
+    return index;
+  }
 }

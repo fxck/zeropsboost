@@ -1,22 +1,18 @@
+<div class="wrap">
+  <input type="text" #inputRef class="add-input" />
+
+  <button
+    (click)="addTodo({ text: inputRef.value, completed: false }); inputRef.value = '';"
+    class="button">
+    Přidat
+  </button>
+</div>
+
 <zeropsboost-todo-item
-  *ngFor="let item of todos; let index = index"
+  *ngFor="let item of todos; let index = index; trackBy: trackByIndex"
   [index]="index"
   [text]="item.text"
   [completed]="item.completed"
   (remove)="removeTodo($event)"
-  (update)="updateTodo($event.index, $event.item)"
->
+  (update)="updateTodo($event.index, $event.item)">
 </zeropsboost-todo-item>
-
-<br />
-
-<input type="text" #inputRef class="add-input" />
-
-<button
-  (click)="
-    addTodo({ text: inputRef.value, completed: false }); inputRef.value = ''
-  "
-  class="button"
->
-  Přidat
-</button>
