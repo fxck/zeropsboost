@@ -15,13 +15,17 @@ export class TodoItemComponent {
   text: string;
 
   @Input()
-  completed: boolean;
+  completed: boolean
+
+  @Input()
+  date: string;
 
   @Output()
   remove = new EventEmitter<number>();
 
   @Output()
-  update = new EventEmitter<{ index: number; item: Todo }>();
+  update = new EventEmitter<{ index: number; item: Todo; toggleButtonClick: boolean; }>();
 
   isUpdateMode = false;
+
 }

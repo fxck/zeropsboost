@@ -1,8 +1,10 @@
 <div class="wrap">
   <input type="text" #inputRef class="add-input" />
 
+  <!-- <input type="date" #inputDate class="add-input" /> -->
+
   <button
-    (click)="addTodo({ text: inputRef.value, completed: false }); inputRef.value = '';"
+    (click)="addTodo(inputRef.value);"
     class="button">
     Přidat
   </button>
@@ -13,6 +15,13 @@
   [index]="index"
   [text]="item.text"
   [completed]="item.completed"
+  [date]="item.date"
   (remove)="removeTodo($event)"
-  (update)="updateTodo($event.index, $event.item)">
+  (update)="updateTodo($event.index, $event.item, $event.toggleButtonClick)">
 </zeropsboost-todo-item>
+
+  <button
+    (click)="setAllToCompleted();"
+    class="button">
+    All done
+  </button>

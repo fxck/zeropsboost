@@ -1,12 +1,14 @@
 <div class="item">
-  
+
   <button
-    (click)="update.emit({ 
-      index, 
+    (click)="update.emit({
+      index,
       item: {
         text,
-        completed: !completed
-      }
+        completed: !completed,
+        date
+      },
+      toggleButtonClick: true
     })"
     class="toggle-button"
     [class.is-completed]="completed === true">
@@ -16,32 +18,39 @@
     {{ text }}
   </div>
 
+  <div class="date-created">
+    {{ date | date:'M/d/yy, h:mm a'}}
+  </div>
+
   <div *ngIf="isUpdateMode === true">
 
     <input type="text" [value]="text" #inputEditRef />
 
     <button
-      (click)="update.emit({ 
-        index, 
+      (click)="update.emit({
+        index,
         item: {
-          text: inputEditRef.value, 
-          completed
-        }
-      }); isUpdateMode = false;"
-      class="button">
-      Save changes
+          text: inputEditRef.value,
+          completed,
+          date
+        },
+        toggleButtonClick: false
+      });
+       isUpdateMode = false;"
+        class="button">
+        Save changes
     </button>
 
   </div>
 
-  <button 
-    *ngIf="isUpdateMode === false" 
+  <button
+    *ngIf="isUpdateMode === false"
     (click)="isUpdateMode = true">
     Enter edit
   </button>
 
-  <button  
-    (click)="remove.emit(index)" 
+  <button
+    (click)="remove.emit(index)"
     class="button">
     Delete
   </button>
