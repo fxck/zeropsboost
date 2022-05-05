@@ -1,11 +1,9 @@
 <div class="wrap">
   <input type="text" #inputRef class="add-input" />
 
-  <!-- <input type="date" #inputDate class="add-input" /> -->
-
   <button
     (click)="addTodo(inputRef.value);"
-    class="button">
+    mat-raised-button>
     Přidat
   </button>
 </div>
@@ -22,6 +20,20 @@
 
   <button
     (click)="setAllToCompleted();"
-    class="button">
+    color="primary"
+    mat-raised-button>
+    <mat-icon>task_alt</mat-icon>
     All done
+  </button>
+
+  <button
+    mat-raised-button
+    (click)="filterCompletedTodos();" >
+    Completed Todos
+  </button>
+
+  <button
+    (click)="showAllTodos();"
+    mat-raised-button>
+    All Todos
   </button>

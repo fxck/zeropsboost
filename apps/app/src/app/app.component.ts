@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { formatDate } from '@angular/common';
 
 @Component({
   selector: 'zeropsboost-root',
