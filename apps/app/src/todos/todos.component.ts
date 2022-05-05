@@ -5,6 +5,18 @@ export interface Todo {
   completed: boolean;
   date: string;
 }
+const TODOS = [
+  {
+    text: 'Naučit se Angular',
+    completed: true,
+    date: new Date(2022, 4, 3).toISOString()
+  },
+  {
+    text: 'Naučit se git',
+    completed: false,
+    date: new Date(2022, 3, 1).toISOString()
+  },
+];
 
 @Component({
   selector: 'zeropsboost-todos',
@@ -12,18 +24,8 @@ export interface Todo {
   styleUrls: ['./todos.component.scss'],
 })
 export class TodosComponent {
-  todos = [
-    {
-      text: 'Naučit se Angular',
-      completed: true,
-      date: '3. 5. 2022'
-    },
-    {
-      text: 'Naučit se git',
-      completed: false,
-      date: '1. 4. 2022'
-    },
-  ];
+
+  todos = TODOS;
 
   addTodo(value: string) {
     const todo = {
@@ -51,6 +53,17 @@ export class TodosComponent {
   }
 
   setAllToCompleted() {
-    this.todos.forEach((_, index) => this.todos[index].completed = true);
+    this.todos = this.todos.map((itm) => ({ ...itm, completed: true }));
   }
+
+  filterCompletedTodos() {
+    this.todos = this.todos.filter((itm) => itm.completed === true);
+    console.log('filterCompletedTodos');
+  }
+
+  showAllTodos() {
+    this.todos = TODOS;
+    console.log('showAllTodos');
+  }
+
 }
