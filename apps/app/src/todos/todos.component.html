@@ -5,7 +5,7 @@
 
   <button
     (click)="addTodo(inputRef.value);"
-    class="button">
+    mat-raised-button>
     Přidat
   </button>
 </div>
@@ -22,18 +22,20 @@
 
   <button
     (click)="setAllToCompleted();"
-    class="button">
+    color="primary"
+    mat-raised-button>
+    <mat-icon>task_alt</mat-icon>
     All done
   </button>
 
   <button
-    (click)="filterCompletedTodos();"
-    class="button">
+    mat-raised-button
+    (click)="filterCompletedTodos();" >
     Ukaž completed
   </button>
 
   <button
     (click)="showAllTodos();"
-    class="button">
+    mat-raised-button>
     Ukaž všechny
   </button>
