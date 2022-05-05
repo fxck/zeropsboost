@@ -58,12 +58,10 @@ export class TodosComponent {
 
   filterCompletedTodos() {
     this.todos = this.todos.filter((itm) => itm.completed === true);
-    console.log('filterCompletedTodos');
   }
 
   showAllTodos() {
     this.todos = TODOS;
-    console.log('showAllTodos');
   }
 
 }
