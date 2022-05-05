@@ -1,6 +1,5 @@
 <div class="item">
 
-
   <button
     (click)="update.emit({
       index,
@@ -14,8 +13,6 @@
     class="toggle-button"
     [class.is-completed]="completed === true">
   </button>
-
-
 
   <div *ngIf="isUpdateMode === false">
     {{ text }}

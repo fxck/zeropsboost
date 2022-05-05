@@ -1,8 +1,6 @@
 <div class="wrap">
   <input type="text" #inputRef class="add-input" />
 
-  <!-- <input type="date" #inputDate class="add-input" /> -->
-
   <button
     (click)="addTodo(inputRef.value);"
     mat-raised-button>
@@ -31,11 +29,11 @@
   <button
     mat-raised-button
     (click)="filterCompletedTodos();" >
-    Ukaž completed
+    Completed Todos
   </button>
 
   <button
     (click)="showAllTodos();"
     mat-raised-button>
-    Ukaž všechny
+    All Todos
   </button>
