@@ -32,10 +32,10 @@ const INITIAL_STATE: State = {
 })
 export class AppComponent {
   // stream of Action { type: string; payload?: any }
-  actionsStream$ = new BehaviorSubject<Action>({ type: 'initial-action' });
+  actions$ = new BehaviorSubject<Action>({ type: 'initial-action' });
 
   // main State with { selectShowOnlyCompleted: boolean; todos: Todo[] }
-  state$ = this.actionsStream$.pipe(scan(todosStateReducer, INITIAL_STATE));
+  state$ = this.actions$.pipe(scan(todosStateReducer, INITIAL_STATE));
 
   // stream with only `selectShowOnlyCompleted`
   showOnlyCompleted$ = this.state$.pipe(map(selectShowOnlyCompleted));

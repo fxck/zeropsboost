@@ -41,10 +41,8 @@ export function selectFilteredTodos({ todos, showOnlyCompleted }: State) {
 export function countTodos(todos: Todo[]) {
   return todos.reduce(
     (obj, itm) => {
+      if (itm.completed) { obj.completed++; }
       obj.all++;
-      if (itm.completed) {
-        obj.completed++;
-      }
       return obj;
     },
     { completed: 0, all: 0 }
@@ -66,8 +64,8 @@ export function addTodo(state: State, payload: Partial<Todo>) {
       {
         ...payload,
         id: Date.now(),
-      },
-    ] as Todo[],
+      }
+    ] as Todo[]
   };
 }
 
@@ -85,13 +83,14 @@ export function updateTodo(
   return {
     ...state,
     todos: state.todos.map((itm) => {
-      if (itm.id !== payload.id) {
-        return itm;
-      }
+      // we are only interested in updating the item
+      // with the same id as id from payload, so skip
+      if (itm.id !== payload.id) { return itm; }
 
+      // spread old value, spread new values
       return {
         ...itm,
-        ...payload.data,
+        ...payload.data
       };
     }),
   };
