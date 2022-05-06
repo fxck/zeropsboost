@@ -21,8 +21,8 @@ const INITIAL_STATE: State = {
       id: 2,
       text: 'bar',
       completed: false,
-    },
-  ],
+    }
+  ]
 };
 
 @Component({
