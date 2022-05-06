@@ -44,6 +44,7 @@ export class AppComponent {
   todos$ = this.state$.pipe(map(selectFilteredTodos));
 
   // stream of an object with { completed: number; all: number; }
+  // starting from state$, because todos$ might be affected by completed filter
   todosCount$ = this.state$.pipe(map(({ todos }) => countTodos(todos)));
 
   trackById(_: number, item: Todo) {
