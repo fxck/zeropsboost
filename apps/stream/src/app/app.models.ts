@@ -2,6 +2,7 @@ export interface Todo {
   id: number;
   text: string;
   completed: boolean;
+  created: string;
 }
 
 export interface State {

@@ -64,6 +64,7 @@ export function addTodo(state: State, payload: Partial<Todo>) {
       {
         ...payload,
         id: Date.now(),
+        created: new Date().toISOString()
       }
     ] as Todo[]
   };

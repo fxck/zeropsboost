@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { scan, map } from 'rxjs/operators';
+import { scan, map, tap } from 'rxjs/operators';
 import { Action, State, Todo } from './app.models';
 import {
   countTodos,
@@ -8,6 +8,7 @@ import {
   selectShowOnlyCompleted,
   todosStateReducer,
 } from './app.utils';
+import { differenceInMinutes, subMinutes } from 'date-fns';
 
 const INITIAL_STATE: State = {
   showOnlyCompleted: false,
@@ -16,11 +17,13 @@ const INITIAL_STATE: State = {
       id: 1,
       text: 'foo',
       completed: true,
+      created: subMinutes(new Date(), 10).toISOString()
     },
     {
       id: 2,
       text: 'bar',
       completed: false,
+      created: subMinutes(new Date(), 10).toISOString()
     }
   ]
 };
@@ -43,6 +46,12 @@ export class AppComponent {
   // stream with only `todos`, internally filtered depeding on `selectShowOnlyCompleted`
   todos$ = this.state$.pipe(map(selectFilteredTodos));
 
+  todosWarning$ = this.state$.pipe(
+    map((state) => !!state.todos.find(
+      (itm) => itm.completed === false && differenceInMinutes(new Date(), new Date(itm.created)) >= 10
+    ))
+  );
+
   // stream of an object with { completed: number; all: number; }
   // starting from state$, because todos$ might be affected by completed filter
   todosCount$ = this.state$.pipe(map(({ todos }) => countTodos(todos)));
@@ -51,3 +60,4 @@ export class AppComponent {
     return item.id;
   }
 }
+
