@@ -1,5 +1,5 @@
 <button
-  (click)="actionsStream$.next({
+  (click)="actions$.next({
     type: 'add-todo',
     payload: {
       text: 'completed todo',
@@ -12,7 +12,7 @@
 <br />
 
 <button
-  (click)="actionsStream$.next({
+  (click)="actions$.next({
     type: 'add-todo',
     payload: {
       text: 'in-complete todo',
@@ -26,7 +26,7 @@
 <br />
 
 <button
-  (click)="actionsStream$.next({
+  (click)="actions$.next({
     type: 'toggle-completed-only'
   })">
   showing: {{ (showOnlyCompleted$ | async) ? 'only completed' : 'all' }} |
@@ -34,7 +34,7 @@
 </button>
 
 <button
-  (click)="actionsStream$.next({
+  (click)="actions$.next({
     type: 'mark-all-completed'
   })">
   [x] Mark all completed
@@ -46,7 +46,7 @@
 <div *ngFor="let item of (todos$ | async); trackBy: trackById">
 
   <button
-    (click)="actionsStream$.next({
+    (click)="actions$.next({
       type: 'update-todo',
       payload: {
         id: item.id,
@@ -65,7 +65,7 @@
   <input
     type="text"
     [value]="item.text"
-    (keyup)="actionsStream$.next({
+    (keyup)="actions$.next({
       type: 'update-todo',
       payload: {
         id: item.id,
@@ -77,7 +77,7 @@
   />
 
   <button
-    (click)="actionsStream$.next({
+    (click)="actions$.next({
       type: 'remove-todo',
       payload: item.id
     })">
