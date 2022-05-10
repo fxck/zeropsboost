@@ -60,6 +60,10 @@ export class TodosComponent {
     this.todos = this.todos.filter((itm) => itm.completed === true);
   }
 
+  filterIncompletedTodos() {
+    this.todos = this.todos.filter((itm) => itm.completed === false);
+  }
+
   showAllTodos() {
     this.todos = TODOS;
   }

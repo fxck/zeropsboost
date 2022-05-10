@@ -4,7 +4,8 @@
   <button
     (click)="addTodo(inputRef.value);"
     mat-raised-button>
-    Přidat
+    <mat-icon>add_task</mat-icon>
+    Add Todo
   </button>
 </div>
 
@@ -30,6 +31,12 @@
     mat-raised-button
     (click)="filterCompletedTodos();" >
     Completed Todos
+  </button>
+
+  <button
+    mat-raised-button
+    (click)="filterIncompletedTodos();" >
+    Incompleted Todos
   </button>
 
   <button
