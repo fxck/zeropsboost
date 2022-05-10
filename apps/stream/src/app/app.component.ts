@@ -2,30 +2,18 @@ import { Component } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { scan, map, tap } from 'rxjs/operators';
 import { Action, State, Todo } from './app.models';
+import { HttpClient } from '@angular/common/http';
 import {
   countTodos,
   selectFilteredTodos,
   selectShowOnlyCompleted,
   todosStateReducer,
 } from './app.utils';
-import { differenceInMinutes, subMinutes } from 'date-fns';
+import { differenceInMinutes } from 'date-fns';
 
 const INITIAL_STATE: State = {
   showOnlyCompleted: false,
-  todos: [
-    {
-      id: 1,
-      text: 'foo',
-      completed: true,
-      created: subMinutes(new Date(), 10).toISOString()
-    },
-    {
-      id: 2,
-      text: 'bar',
-      completed: false,
-      created: subMinutes(new Date(), 10).toISOString()
-    }
-  ]
+  todos: []
 };
 
 @Component({
@@ -55,6 +43,12 @@ export class AppComponent {
   // stream of an object with { completed: number; all: number; }
   // starting from state$, because todos$ might be affected by completed filter
   todosCount$ = this.state$.pipe(map(({ todos }) => countTodos(todos)));
+
+  constructor(private _http: HttpClient) {
+    this._http
+      .get('http://localhost:3333/api/todos')
+      .subscribe((res) => this.actions$.next({ type: 'get-todos', payload: res }));
+  }
 
   trackById(_: number, item: Todo) {
     return item.id;

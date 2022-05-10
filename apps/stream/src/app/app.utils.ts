@@ -6,6 +6,12 @@ export function todosStateReducer(state: State, action: Action): State {
   }
 
   switch (action.type) {
+    case 'get-todos':
+      return {
+        ...state,
+        todos: action.payload
+      }
+
     case 'add-todo':
       return addTodo(state, action.payload);
 
