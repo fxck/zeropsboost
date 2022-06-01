@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 
 export interface Todo {
-  text: string;
-  completed: boolean;
-  date: string;
+  text?: string;
+  completed?: boolean;
+  date?: string;
 }
-const TODOS = [
+
+const TODOS: Todo[] = [
   {
     text: 'Naučit se Angular',
     completed: true,
@@ -40,7 +41,7 @@ export class TodosComponent {
     this.todos.splice(index, 1);
   }
 
-  updateTodo(index: number, newValue: Todo, keepDate: boolean) {
+  updateTodo(index: number, newValue: Partial<Todo>, keepDate: boolean) {
     const updatedValue = {
       ...newValue,
       date: keepDate ? newValue.date : new Date().toISOString()

@@ -1,5 +1,4 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
-import { Todo } from '../todos/todos.component';
 
 @Component({
   selector: 'zeropsboost-todo-item',
@@ -12,19 +11,23 @@ export class TodoItemComponent {
   index!: number;
 
   @Input()
-  text: string;
+  text?: string;
 
   @Input()
-  completed: boolean
+  completed?: boolean
 
   @Input()
-  date: string;
+  date?: string;
 
   @Output()
   remove = new EventEmitter<number>();
 
   @Output()
-  update = new EventEmitter<{ index: number; item: Todo; toggleButtonClick: boolean; }>();
+  update = new EventEmitter<{
+    index: number;
+    item: { text: string; completed: boolean; };
+    toggleButtonClick: boolean;
+  }>();
 
   isUpdateMode = false;
 

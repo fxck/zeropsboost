@@ -4,9 +4,8 @@
     (click)="update.emit({
       index,
       item: {
-        text,
-        completed: !completed,
-        date
+        text: text || '',
+        completed: !completed
       },
       toggleButtonClick: true
     })"
@@ -31,8 +30,7 @@
         index,
         item: {
           text: inputEditRef.value,
-          completed,
-          date
+          completed: !!completed
         },
         toggleButtonClick: false
       });

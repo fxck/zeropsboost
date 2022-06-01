@@ -16,7 +16,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@zeropsboost/api-interfaces": ["libs/api-interfaces/src/index.ts"]
+      "@zeropsboost/api-interfaces": ["libs/api-interfaces/src/index.ts"],
+      "@zeropsboost/ui/*": ["libs/ui/src/*"]
     }
   },
   "exclude": ["node_modules", "tmp"]
