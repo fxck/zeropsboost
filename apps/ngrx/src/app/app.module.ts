@@ -5,8 +5,9 @@ import { StoreModule } from '@ngrx/store';
 import { storeLogger } from 'ngrx-store-logger';
 import { EffectsModule } from '@ngrx/effects';
 import { AppComponent } from './app.component';
-import { TodosModule } from './todos';
+import { TodosCoreModule } from './todos';
 import { ZefAppInjector } from './app.utils';
+import { TodosModule } from '@zeropsboost/ui/todos';
 
 @NgModule({
   imports: [
@@ -16,6 +17,7 @@ import { ZefAppInjector } from './app.utils';
       (reducer: any) => storeLogger({ collapsed: true })(reducer)
     ]}),
     EffectsModule.forRoot(),
+    TodosCoreModule,
     TodosModule
   ],
   declarations: [ AppComponent ],

@@ -11,6 +11,6 @@ import { todosReducer } from './todos.reducer';
     EffectsModule.forFeature([ TodosEffect ])
   ],
 })
-export class TodosModule {
+export class TodosCoreModule {
 
 }

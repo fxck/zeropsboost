@@ -43,49 +43,15 @@
 <br />
 <br />
 
-<div *ngFor="let item of (todos$ | async); trackBy: trackById">
-
-  <button
-    (click)="actions$.next({
-      type: 'update-todo',
-      payload: {
-        id: item.id,
-        data: {
-          completed: !item.completed
-        }
-      }
-    })">
-    {{ item.completed ? '[x]' : '[ ]' }}
-  </button>
-
-  {{ item.text }}
-
-  <br />
-
-  <input
-    type="text"
-    [value]="item.text"
-    (keyup)="actions$.next({
-      type: 'update-todo',
-      payload: {
-        id: item.id,
-        data: {
-          text: $any($event).target.value
-        }
-      }
-    })"
-  />
-
-  <button
-    (click)="actions$.next({
-      type: 'remove-todo',
-      payload: item.id
-    })">
-    [delete]
-  </button>
-
-  <br /><br />
-
-</div>
-
-<h1 *ngIf="todosWarning$ | async">máš neodbavený todos dlouhou dobu</h1>
+<zeropsboost-todos
+  (onDelete)="actions$.next({
+    type: 'remove-todo',
+    payload: $event
+  })"
+  (onUpdate)="actions$.next({
+    type: 'update-todo',
+    payload: $event
+  })"
+  [showWarning]="todosWarning$ | async"
+  [data]="todos$ | async">
+</zeropsboost-todos>

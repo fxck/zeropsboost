@@ -48,10 +48,10 @@ export class AppComponent {
     this._http
       .get('http://localhost:3333/api/todos')
       .subscribe((res) => this.actions$.next({ type: 'get-todos', payload: res }));
+
   }
 
   trackById(_: number, item: Todo) {
     return item.id;
   }
 }
-
