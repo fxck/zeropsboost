@@ -4,7 +4,8 @@ import { Todo, TodosState } from './todos.models';
 
 const initialState: TodosState = {
   items: [],
-  showOnlyCompleted: false
+  showOnlyCompleted: false,
+  lomakar: ''
 };
 
 const addTodo = (state: TodosState, data: Todo) => ({

@@ -1,4 +1,12 @@
 <button
+  type="button"
+  (click)="onLomakar$.next('omgf')">
+  Lomakar
+</button>
+
+<br />
+
+<button
   (click)="onAdd$.next({
     text: 'completed todo',
     completed: true

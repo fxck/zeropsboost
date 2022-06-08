@@ -25,6 +25,7 @@ export class AppComponent extends ZefReactiveComponent {
   onUpdate$ = new Subject<{ id: number; data: Partial<TodoBase>; }>();
   onDelete$ = new Subject<number>();
   onToggleShowCompleted$ = new Subject<void>();
+  onLomakar$ = new Subject<string>();
 
   // # Data
   // -- async
@@ -54,6 +55,8 @@ export class AppComponent extends ZefReactiveComponent {
   private _toggleShowCompletedAction$ = this.onToggleShowCompleted$.pipe(
     map(TodosActions.toggleShowCompleted
   ));
+  private _lomakarAction$ = this.onLomakar$.pipe(
+    map((text) => TodosActions.lomakar({ text })));
 
   constructor(private _store$: Store) {
     super();
@@ -63,7 +66,8 @@ export class AppComponent extends ZefReactiveComponent {
       this._addAction$,
       this._updateAction$,
       this._deleteAction$,
-      this._toggleShowCompletedAction$
+      this._toggleShowCompletedAction$,
+      this._lomakarAction$
     ]);
 
   }
@@ -73,4 +77,3 @@ export class AppComponent extends ZefReactiveComponent {
   }
 
 }
-
