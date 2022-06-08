@@ -35,40 +35,10 @@
 <br />
 <br />
 
-<div *ngFor="let item of state.filteredTodos; trackBy: trackById">
 
-  <button
-    (click)="onUpdate$.next({
-      id: item.id,
-      data: {
-        completed: !item.completed
-      }
-    })">
-    {{ item.completed ? '[x]' : '[ ]' }}
-  </button>
-
-  {{ item.text }}
-
-  <br />
-
-  <input
-    type="text"
-    [value]="item.text"
-    (keyup)="onUpdate$.next({
-      id: item.id,
-      data: {
-        text: $any($event).target.value
-      }
-    })"
-  />
-
-  <button
-    (click)="onDelete$.next(item.id)">
-    [delete]
-  </button>
-
-  <br /><br />
-
-</div>
-
-<h1 *ngIf="state.showTodosWarning">máš neodbavený todos dlouhou dobu</h1>
+<zeropsboost-todos
+  (onDelete)="onDelete$.next($event)"
+  (onUpdate)="onUpdate$.next($event)"
+  [showWarning]="state.showTodosWarning"
+  [data]="state.filteredTodos">
+</zeropsboost-todos>

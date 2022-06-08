@@ -1,0 +1,42 @@
+todos: {{ data | json }}
+<br/>
+warning: {{ showWarning }}
+
+<h1 *ngIf="showWarning">máš neodbavený todos dlouhou dobu</h1>
+
+
+<div *ngFor="let item of data; trackBy: trackById">
+
+  <button
+    (click)="onUpdate.emit({
+      id: item.id,
+      data: {
+        completed: !item.completed
+      }
+    })">
+    {{ item.completed ? '[x]' : '[ ]' }}
+  </button>
+
+  {{ item.text }}
+
+  <br />
+
+  <input
+    type="text"
+    [value]="item.text"
+    (keyup)="onUpdate.emit({
+      id: item.id,
+      data: {
+        text: $any($event).target.value
+      }
+    })"
+  />
+
+  <button
+    (click)="onDelete.emit(item.id)">
+    [delete]
+  </button>
+
+  <br /><br />
+
+</div>
