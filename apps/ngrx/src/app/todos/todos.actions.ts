@@ -22,6 +22,8 @@ export const TodosActions = createActionGroup({
     'delete success': props<{ id: number; }>(),
     'delete fail': emptyProps(),
 
-    'toggle show completed': emptyProps()
+    'toggle show completed': emptyProps(),
+
+    'lomakar': props<{ text: string }>()
   },
 });
