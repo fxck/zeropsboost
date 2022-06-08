@@ -39,11 +39,17 @@ const toggleShowCompleted = (state: TodosState) => ({
   showOnlyCompleted: !state.showOnlyCompleted
 });
 
+const setLomakar = (state: TodosState, text: string) => ({
+  ...state,
+  lomakar: text
+})
+
 export const todosReducer = createReducer(
   initialState,
   on(TodosActions.addSuccess, (state, { data }) => addTodo(state, data)),
   on(TodosActions.updateSuccess, (state, data) => updateTodo(state, data)),
   on(TodosActions.deleteSuccess, (state, { id }) => removeTodo(state, id)),
   on(TodosActions.getAllSuccess, (state, { data }) => getAllTodos(state, data)),
-  on(TodosActions.toggleShowCompleted, (state) => toggleShowCompleted(state))
+  on(TodosActions.toggleShowCompleted, (state) => toggleShowCompleted(state)),
+  on(TodosActions.lomakar, (state, { text }) => setLomakar(state, text))
 );

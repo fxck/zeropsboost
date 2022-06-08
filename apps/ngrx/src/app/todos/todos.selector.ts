@@ -34,3 +34,7 @@ export const selectTodosCount = createSelector(
   )
 );
 
+export const selectLomakar = createSelector(
+  todosState,
+  (state) => state.lomakar
+);

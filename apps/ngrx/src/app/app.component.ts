@@ -5,6 +5,7 @@ import { ZefReactiveComponent } from './app.utils';
 import { differenceInMinutes } from 'date-fns';
 import {
   selectFilteredTodos,
+  selectLomakar,
   selectShowOnlyCompleted,
   selectTodos,
   selectTodosCount,
@@ -39,13 +40,15 @@ export class AppComponent extends ZefReactiveComponent {
       && differenceInMinutes(new Date(), new Date(itm.created)) >= 10
     ))
   ));
+  lomakar$ = this._store$.pipe(select(selectLomakar));
 
   // # State resolver
   state = this.$connect({
     filteredTodos: this.filteredTodos$,
     todosCount: this.todosCount$,
     showTodosWarning: this.showTodosWarning$,
-    showOnlyCompleted: this.showOnlyCompleted$
+    showOnlyCompleted: this.showOnlyCompleted$,
+    selectLomakar: this.lomakar$
   });
 
   // # Action Streams
