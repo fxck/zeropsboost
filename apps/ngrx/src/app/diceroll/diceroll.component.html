@@ -56,14 +56,14 @@
 
   <button
     (click)="onRoll$.next()"
-    [disabled]="state.playerOneScore >= scoreToWin || state.playerOneScore >= scoreToWin"
+    [disabled]="state.playerOneScore >= scoreToWin || state.playerTwoScore >= scoreToWin"
     class="btn btn--roll">
     🎲 Roll dice
   </button>
 
   <button
     (click)="onHold$.next()"
-    [disabled]="state.playerOneScore >= scoreToWin || state.playerOneScore >= scoreToWin"
+    [disabled]="state.playerOneScore >= scoreToWin || state.playerTwoScore >= scoreToWin"
     class="btn btn--hold">
     📥 Hold
   </button>
