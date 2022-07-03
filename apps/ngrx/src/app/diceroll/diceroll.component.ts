@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import { Store } from '@ngrx/store';
+import { select, Store } from '@ngrx/store';
 import { map, Subject } from 'rxjs';
 import { ZefReactiveComponent } from '../app.utils';
 import { DicerollActions } from './diceroll.actions';
+import { selectCurrentPlayer, selectCurrentPot, selectLastRoll, selectPlayerOneScore, selectPlayerTwoScore } from './diceroll.selector';
 
 @Component({
   selector: 'zeropsboost-diceroll',
@@ -15,6 +16,23 @@ export class DicerollComponent extends ZefReactiveComponent {
   onRoll$ = new Subject<void>();
   onHold$ = new Subject<void>();
   onReset$ = new Subject<void>();
+
+  // # Data
+  // -- async
+  playerOneScore$ = this._store$.pipe(select(selectPlayerOneScore));
+  playerTwoScore$ = this._store$.pipe(select(selectPlayerTwoScore));
+  currentPot$ = this._store$.pipe(select(selectCurrentPot));
+  currentPlayer$ = this._store$.pipe(select(selectCurrentPlayer));
+  lastRoll$ = this._store$.pipe(select(selectLastRoll));
+
+  // # State Resolver
+  state = this.$connect({
+    playerOneScore: this.playerOneScore$,
+    playerTwoScore: this.playerTwoScore$,
+    currentPot: this.currentPot$,
+    currentPlayer: this.currentPlayer$,
+    lastRoll: this.lastRoll$
+  });
 
   // # Action Streams
   private _rollAction$ = this.onRoll$.pipe(map(DicerollActions.roll));
