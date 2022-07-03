@@ -3,8 +3,12 @@ export interface DicerollState {
     one: number;
     two: number;
   };
-  lastRoll: undefined;
+  lastRoll: number | undefined;
   currentPot: number;
-  currentPlayer: 'one' | 'two';
+  currentPlayer: Players;
 }
 
+export enum Players {
+  One = 'one',
+  Two = 'two'
+}

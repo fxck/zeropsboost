@@ -1,27 +1,71 @@
 <main>
 
-  <section class="player player--0 player--active">
+  <section
+    class="player player--0"
+    [class.player--active]="state.currentPlayer === players.One"
+    [class.player--winner]="state.playerOneScore >= scoreToWin">
+
     <h2 class="name">Player 1</h2>
-    <p class="score">0</p>
+
+    <p class="score">{{ state.playerOneScore }}</p>
+
     <div class="current">
+
       <p class="current-label">Current</p>
-      <p class="current-score">0</p>
+
+      <p class="current-score">
+        {{ state.currentPlayer === players.One ? state.currentPot : 0 }}
+      </p>
+
     </div>
+
   </section>
 
-  <section class="player player--1">
+  <section
+    class="player player--1"
+    [class.player--active]="state.currentPlayer === players.Two"
+    [class.player--winner]="state.playerTwoScore >= scoreToWin">
+
     <h2 class="name">Player 2</h2>
-    <p class="score">0</p>
+
+    <p class="score">{{ state.playerTwoScore }}</p>
+
     <div class="current">
+
       <p class="current-label">Current</p>
-      <p class="current-score">0</p>
+
+      <p class="current-score">
+        {{ state.currentPlayer === players.Two ? state.currentPot : 0 }}
+      </p>
+
     </div>
+
   </section>
 
-  <img src="/assets/dice-5.png" alt="Playing dice" class="dice hidden">
+  <img
+    [src]="'/assets/dice-' + state.lastRoll + '.png'"
+    alt="Playing dice"
+    class="dice"
+    [class.hidden]="state.lastRoll === undefined">
 
-  <button class="btn btn--new">🔄 New game</button>
-  <button class="btn btn--roll">🎲 Roll dice</button>
-  <button class="btn btn--hold">📥 Hold</button>
+  <button
+    (click)="onReset$.next()"
+    class="btn btn--new">
+    🔄 New game
+  </button>
+
+  <button
+    (click)="onRoll$.next()"
+    [disabled]="state.playerOneScore >= scoreToWin || state.playerTwoScore >= scoreToWin"
+    class="btn btn--roll">
+    🎲 Roll dice
+  </button>
+
+  <button
+    (click)="onHold$.next()"
+    [disabled]="state.playerOneScore >= scoreToWin || state.playerTwoScore >= scoreToWin"
+    class="btn btn--hold">
+    📥 Hold
+  </button>
 
 </main>
