@@ -20,8 +20,8 @@
 
   <img src="/assets/dice-5.png" alt="Playing dice" class="dice hidden">
 
-  <button class="btn btn--new">🔄 New game</button>
-  <button class="btn btn--roll">🎲 Roll dice</button>
-  <button class="btn btn--hold">📥 Hold</button>
+  <button (click)="onReset$.next()" class="btn btn--new">🔄 New game</button>
+  <button (click)="onRoll$.next()" class="btn btn--roll">🎲 Roll dice</button>
+  <button (click)="onHold$.next()" class="btn btn--hold">📥 Hold</button>
 
 </main>

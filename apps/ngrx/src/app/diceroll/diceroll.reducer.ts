@@ -1,4 +1,5 @@
-import { createReducer } from '@ngrx/store';
+import { createReducer, on } from '@ngrx/store';
+import { DicerollActions } from './diceroll.actions';
 import { DicerollState } from './diceroll.models';
 
 const initialState: DicerollState = {
@@ -11,6 +12,17 @@ const initialState: DicerollState = {
   currentPlayer: 'one'
 };
 
+const roll = (state: DicerollState) => {
+  return state;
+};
+
+const hold = (state: DicerollState) => {
+  return state;
+};
+
 export const dicerollReducer = createReducer(
-  initialState
+  initialState,
+  on(DicerollActions.roll, roll),
+  on(DicerollActions.hold, hold),
+  on(DicerollActions.reset, () => initialState)
 );
